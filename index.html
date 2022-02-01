@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+        
+    </head>
+    <body>
+        <h1>All end points of Pet API from Swagger</h1>
+        <div id="api-info" styles="width:500px;height:300px;background-color:#e2e2e2"></div>
+        <div id="error" style="margin:10px auto;padding:20px; color:crimson;border:1px solid crimson;display:none"></div>
+        <script>
+        $(document).ready(function(){
+            $.get({url: "https://petstore.swagger.io/v2/pet/1", success: function(result){
+                console.log(result)
+                let el = `<span>Pet_ Name    :    <span style="font-weight:bold;color:crimson"> ${result.name} </span> </span><br/>
+                          <span>Brand    :    ${result.category.name} </span><br/>
+                            <span>Status     :    ${result.status} </span>`
+
+                 $("#api-info").html(el);
+             },
+             error:function(err){
+                $("#error").html('Oops! Error while getting the data. Please try afte sometime');
+                $('#error').css('dispaly','block')
+             }
+            });
+        })
+        </script>
+    </body>
+</html>
